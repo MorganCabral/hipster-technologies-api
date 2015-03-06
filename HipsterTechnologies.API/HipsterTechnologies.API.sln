@@ -3,8 +3,61 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.22609.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Routes", "Routes", "{D7E470F3-A6E9-44F0-B999-F1DF7EAA8995}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Main", "Main", "{CD4E7DFE-44C0-4DA0-AB87-C82C07B72034}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipsterTechnologies.API.Main", "HipsterTechnologies.API.Main\HipsterTechnologies.API.Main.csproj", "{D8D5D78D-964B-4C49-8DC2-B57F28FE7AC4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{799DFD22-AB82-4963-83DE-CA3DF1CAD044}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipsterTechnologies.API.Models", "HipsterTechnologies.API.Models\HipsterTechnologies.API.Models.csproj", "{DAA853BD-06BA-40CC-AB7D-559D9C0BA489}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipsterTechnologies.API.Models.Tests", "HipsterTechnologies.API.Models.Tests\HipsterTechnologies.API.Models.Tests.csproj", "{18DD27C8-3C32-45E5-8311-9EF33FB9D7E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chat", "Chat", "{4B9D7468-1ACF-4D86-90BA-F21F34DE2B4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipsterTechnologies.API.Routes", "HipsterTechnologies.API.Routes\HipsterTechnologies.API.Routes.csproj", "{AADAA61B-3982-4E5A-8E08-80385DD53C93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipsterTechnologies.API.Routes.Tests", "HipsterTechnologies.API.Routes.Tests\HipsterTechnologies.API.Routes.Tests.csproj", "{BC57F15A-3061-4F81-A217-6C478BFB7738}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A25A004A-93C6-44A8-83A0-6AD28DA3F5B2}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8D5D78D-964B-4C49-8DC2-B57F28FE7AC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8D5D78D-964B-4C49-8DC2-B57F28FE7AC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8D5D78D-964B-4C49-8DC2-B57F28FE7AC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8D5D78D-964B-4C49-8DC2-B57F28FE7AC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAA853BD-06BA-40CC-AB7D-559D9C0BA489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAA853BD-06BA-40CC-AB7D-559D9C0BA489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAA853BD-06BA-40CC-AB7D-559D9C0BA489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAA853BD-06BA-40CC-AB7D-559D9C0BA489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18DD27C8-3C32-45E5-8311-9EF33FB9D7E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18DD27C8-3C32-45E5-8311-9EF33FB9D7E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18DD27C8-3C32-45E5-8311-9EF33FB9D7E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18DD27C8-3C32-45E5-8311-9EF33FB9D7E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AADAA61B-3982-4E5A-8E08-80385DD53C93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AADAA61B-3982-4E5A-8E08-80385DD53C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AADAA61B-3982-4E5A-8E08-80385DD53C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AADAA61B-3982-4E5A-8E08-80385DD53C93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC57F15A-3061-4F81-A217-6C478BFB7738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC57F15A-3061-4F81-A217-6C478BFB7738}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC57F15A-3061-4F81-A217-6C478BFB7738}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC57F15A-3061-4F81-A217-6C478BFB7738}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D8D5D78D-964B-4C49-8DC2-B57F28FE7AC4} = {CD4E7DFE-44C0-4DA0-AB87-C82C07B72034}
+		{DAA853BD-06BA-40CC-AB7D-559D9C0BA489} = {799DFD22-AB82-4963-83DE-CA3DF1CAD044}
+		{18DD27C8-3C32-45E5-8311-9EF33FB9D7E5} = {799DFD22-AB82-4963-83DE-CA3DF1CAD044}
+		{AADAA61B-3982-4E5A-8E08-80385DD53C93} = {D7E470F3-A6E9-44F0-B999-F1DF7EAA8995}
+		{BC57F15A-3061-4F81-A217-6C478BFB7738} = {D7E470F3-A6E9-44F0-B999-F1DF7EAA8995}
 	EndGlobalSection
 EndGlobal
