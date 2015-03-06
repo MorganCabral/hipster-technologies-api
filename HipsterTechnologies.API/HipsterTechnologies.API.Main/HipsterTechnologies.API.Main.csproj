@@ -84,6 +84,12 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HipsterTechnologies.API.Routes\HipsterTechnologies.API.Routes.csproj">
+      <Project>{aadaa61b-3982-4e5a-8e08-80385dd53c93}</Project>
+      <Name>HipsterTechnologies.API.Routes</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
