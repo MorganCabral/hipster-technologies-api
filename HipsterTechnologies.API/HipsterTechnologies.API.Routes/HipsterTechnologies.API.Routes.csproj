@@ -38,6 +38,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.1.1\lib\net40\Nancy.dll</HintPath>
@@ -92,6 +93,13 @@
       <Project>{daa853bd-06ba-40cc-ab7d-559d9c0ba489}</Project>
       <Name>HipsterTechnologies.API.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HipsterTechnologies.API.Services.MarkIt\HipsterTechnologies.API.Services.MarkIt.csproj">
+      <Project>{620d7861-ef36-4f59-900a-f156556c93e1}</Project>
+      <Name>HipsterTechnologies.API.Services.MarkIt</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ResponseBodies\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

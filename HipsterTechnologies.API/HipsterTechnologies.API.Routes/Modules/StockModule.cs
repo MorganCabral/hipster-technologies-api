@@ -25,8 +25,8 @@ namespace HipsterTechnologies.API.Routes.Modules
             _logger = logger;
 
             // Setup route handlers.
-            Get["/", true] = GetTopFiveStocks;
-            Get["/{exchange}/{symbol}", true] = GetStockInfo;
+            Get["/", true] = GetStockInfo;
+            Get["/report", true] = GetStockReport;
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace HipsterTechnologies.API.Routes.Modules
         /// <param name="parameters">Arguments from the client.</param>
         /// <param name="token">Token used to indicate that the task should stop.</param>
         /// <returns>A task containing the result of whatever we do in this handler.</returns>
-        public async Task<dynamic> GetTopFiveStocks(dynamic parameters, CancellationToken token)
+        public async Task<dynamic> GetStockReport(dynamic parameters, CancellationToken token)
         {
             _logger.Info("Get /stocks");
             await Task.Delay(1000);
