@@ -85,9 +85,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HipsterTechnologies.API.Models\HipsterTechnologies.API.Models.csproj">
+      <Project>{daa853bd-06ba-40cc-ab7d-559d9c0ba489}</Project>
+      <Name>HipsterTechnologies.API.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HipsterTechnologies.API.Routes\HipsterTechnologies.API.Routes.csproj">
       <Project>{aadaa61b-3982-4e5a-8e08-80385dd53c93}</Project>
       <Name>HipsterTechnologies.API.Routes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HipsterTechnologies.API.Services.MarkIt\HipsterTechnologies.API.Services.MarkIt.csproj">
+      <Project>{620d7861-ef36-4f59-900a-f156556c93e1}</Project>
+      <Name>HipsterTechnologies.API.Services.MarkIt</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

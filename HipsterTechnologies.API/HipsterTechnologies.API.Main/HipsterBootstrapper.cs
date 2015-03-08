@@ -7,6 +7,9 @@ using Nancy;
 using Nancy.TinyIoc;
 using SimpleLogging.NLog;
 using SimpleLogging.Core;
+using Nancy.Bootstrapper;
+using HipsterTechnologies.API.Models.Contexts;
+using HipsterTechnologies.API.Services.MarkIt;
 
 namespace HipsterTechnologies.API.Main
 {
@@ -25,6 +28,20 @@ namespace HipsterTechnologies.API.Main
             // access the service so we can actually log things.
             var loggingService = new NLogLoggingService();
             container.Register<ILoggingService>(loggingService);
+
+            // Create and register an instance of the ModelContextFactory.
+            // This abstracts away the process of creating ModelContexts,
+            // making it easier to test (we can insert the factory
+            // as a dependency and rely upon it to create contexts).
+            // In our tests we simply mock this out and pass it as a 
+            // dependency.
+            var modelContextFactory = new ModelContextFactory();
+            container.Register<IModelContextFactory>(modelContextFactory);
+
+            // Create and register an instance of our stock market interfacing
+            // service so that we can get stock quotes and other info.
+            var stockMarketService = new MarkItService();
+            container.Register<IStockMarketService>(stockMarketService);
         }
     }
 }
