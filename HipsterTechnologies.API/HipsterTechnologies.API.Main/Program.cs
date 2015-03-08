@@ -16,6 +16,9 @@ namespace HipsterTechnologies.API.Main
         /// <param name="args">Command line arguments.</param>
         public static void Main(string[] args)
         {
+            // Log something so that the user knows we're actually doing something.
+            Console.WriteLine("Hipster Technologies (tm) (r) (#REKT) API Web Service");
+
             // Pull the port to host the service on from our application-level
             // configuration. We can make this vary based on environment.
             var port = ConfigurationManager.AppSettings["port"];
@@ -24,9 +27,7 @@ namespace HipsterTechnologies.API.Main
             // Run the web server until the user hits enter.
             using (WebApp.Start<Startup>(url))
             {
-                Console.WriteLine("Hipster Technologies (tm) (r) (#REKT) API Web Service");
-                Console.WriteLine("Running on {0}", url);
-                Console.WriteLine("Press enter to stop");
+                Console.WriteLine("Running on {0} - press enter to stop...", url);
                 Console.ReadLine();
             }
         }
