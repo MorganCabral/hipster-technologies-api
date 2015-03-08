@@ -16,6 +16,11 @@ namespace HipsterTechnologies.API.Models
         public int HoldingId { get; set; }
 
         /// <summary>
+        /// The holding owner's facebook handle.
+        /// </summary>
+        public String FacebookHandle { get; set; }
+
+        /// <summary>
         /// The exchange that the stock is traded on.
         /// </summary>
         public String Exchange { get; set; }

@@ -5,14 +5,14 @@ namespace HipsterTechnologies.API.Models.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<HipsterTechnologies.API.Models.HipsterDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<HipsterTechnologies.API.Models.Contexts.ModelContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(HipsterTechnologies.API.Models.HipsterDbContext context)
+        protected override void Seed(HipsterTechnologies.API.Models.Contexts.ModelContext context)
         {
             //  This method will be called after migrating to the latest version.
 

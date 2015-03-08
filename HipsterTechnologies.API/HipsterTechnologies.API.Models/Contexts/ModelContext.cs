@@ -7,21 +7,21 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Infrastructure;
 
-namespace HipsterTechnologies.API.Models
+namespace HipsterTechnologies.API.Models.Contexts
 {
     /// <summary>
     /// Context class which is used to access model objects.
     /// </summary>
-    public class HipsterDbContext : DbContext
+    public class ModelContext : DbContext
     {
         /// <summary>
-        /// Accessor property for holding models.
+        /// Accessor property for Holding models.
         /// </summary>
-        public DbSet<Holding> Holdings { get; set; }
+        public virtual DbSet<Holding> Holdings { get; set; }
 
         /// <summary>
-        /// Accessor property for transaction models.
+        /// Accessor property for Transaction models.
         /// </summary>
-        public DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<Transaction> Transactions { get; set; }
     }
 }
