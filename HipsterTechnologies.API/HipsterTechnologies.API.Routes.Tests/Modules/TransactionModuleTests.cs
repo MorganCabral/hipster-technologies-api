@@ -148,18 +148,6 @@ namespace HipsterTechnologies.API.Routes.Tests.Modules
         }
 
         [Test]
-        public void PostTransactionsUsesLoggerTest()
-        {
-            // Exercise the module.
-            var response = Browser.Post("/transactions", with => {
-                with.JsonBody<Transaction>(SampleTransaction);
-            });
-
-            // Verify behavior.
-            LoggerMock.Verify(logger => logger.Info("POST /transactions"), Times.Once);
-        }
-
-        [Test]
         public void PostTransactionsLocationHeaderTest()
         {
             // Exercise the module.
