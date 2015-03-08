@@ -9,7 +9,7 @@ namespace HipsterTechnologies.API.Models.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(HipsterTechnologies.API.Models.Contexts.ModelContext context)

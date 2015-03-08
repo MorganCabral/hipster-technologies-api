@@ -24,6 +24,11 @@ namespace HipsterTechnologies.API.Models
     public class TransactionItem
     {
         /// <summary>
+        /// Primary Key.
+        /// </summary>
+        public int TransactionItemId { get; set; }
+
+        /// <summary>
         /// The exchange where the stock is traded.
         /// </summary>
         public String Exchange { get; set; }
