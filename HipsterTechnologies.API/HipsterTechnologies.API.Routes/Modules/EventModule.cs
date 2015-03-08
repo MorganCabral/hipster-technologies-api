@@ -35,45 +35,33 @@ namespace HipsterTechnologies.API.Routes.Modules
 
         public async Task<dynamic> GetEvent(dynamic parameters, CancellationToken token)
         {
-            _logger.Info("Get /events/{0}", parameters.id);
-            await Task.Delay(1000);
-            return "Arble Garble Warble";
+            return HttpStatusCode.NotImplemented;
         }
 
         public async Task<dynamic> CreateEvent(dynamic parameters, CancellationToken token)
         {
-            _logger.Info("Post /events", parameters.id);
-            await Task.Delay(1000);
-            return "Arble Garble Warble";
+            return HttpStatusCode.NotImplemented;
         }
 
         public async Task<dynamic> UpdateEvent(dynamic parameters, CancellationToken token)
         {
-            _logger.Info("Put /events/{0}", parameters.id);
-            await Task.Delay(1000);
-            return "Arble Garble Warble";
+            return HttpStatusCode.NotImplemented;
         }
 
         public async Task<dynamic> DeleteEvent(dynamic parameters, CancellationToken token)
         {
-            _logger.Info("Delete /events/{0}", parameters.id);
-            await Task.Delay(1000);
-            return "Arble Garble Warble";
+            return HttpStatusCode.NotImplemented;
         }
 
 
         public async Task<dynamic> ImportEvents(dynamic parameters, CancellationToken token)
         {
-            _logger.Info("Post /events/import");
-            await Task.Delay(1000);
-            return "Arble Garble Warble";
+            return HttpStatusCode.NotImplemented;
         }
 
         public async Task<dynamic> ExportEvents(dynamic parameters, CancellationToken token)
         {
-            _logger.Info("Get /events/export");
-            await Task.Delay(1000);
-            return "Arble Garble Warble";
+            return HttpStatusCode.NotImplemented;
         }
 
         private ILoggingService _logger;

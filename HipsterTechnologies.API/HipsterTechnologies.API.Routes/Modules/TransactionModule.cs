@@ -69,8 +69,6 @@ namespace HipsterTechnologies.API.Routes.Modules
         /// <returns>A task containing the result of whatever we do in this handler.</returns>
         public async Task<dynamic> PostTransactions(dynamic parameters, CancellationToken token)
         {
-            _logger.Info("POST /transactions");
-
             // Create a response object early on so that we can modify it
             // as we go.
             Response response = new Nancy.Response();
@@ -83,6 +81,10 @@ namespace HipsterTechnologies.API.Routes.Modules
 
             // Annotate the transaction with data.
             transaction.PostedTime = DateTime.Now;
+            if( transaction.TransactionItems == null )
+            {
+                transaction.TransactionItems = new List<TransactionItem>();
+            }
 
             // Perform a price lookup on each stock
             foreach( var item in transaction.TransactionItems )

@@ -37,9 +37,7 @@ namespace HipsterTechnologies.API.Routes.Modules
         /// <returns>A task containing the result of whatever we do in this handler.</returns>
         public async Task<dynamic> GetStockReport(dynamic parameters, CancellationToken token)
         {
-            _logger.Info("Get /stocks");
-            await Task.Delay(1000);
-            return "Arble Garble Warble";
+            return HttpStatusCode.NotImplemented;
         }
 
         /// <summary>
@@ -50,9 +48,7 @@ namespace HipsterTechnologies.API.Routes.Modules
         /// <returns>A task containing the result of whatever we do in this handler.</returns>
         public async Task<dynamic> GetStockInfo(dynamic parameters, CancellationToken token)
         {
-            _logger.Info("Get /stocks/{0}/{1}", parameters.exchange, parameters.symbol);
-            await Task.Delay(1000);
-            return "Arble Garble Warble";
+            return HttpStatusCode.NotImplemented;
         }
 
         private ILoggingService _logger;
