@@ -33,6 +33,12 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Nancy">
+      <HintPath>..\packages\Nancy.1.1\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Authentication.Token">
+      <HintPath>..\packages\Nancy.Authentication.Token.1.1\lib\net40\Nancy.Authentication.Token.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.core">
       <HintPath>..\packages\NUnitTestAdapter.1.2\lib\nunit.core.dll</HintPath>
       <Private>False</Private>
