@@ -14,6 +14,12 @@ using HipsterTechnologies.API.Models.Contexts;
 namespace HipsterTechnologies.API.Routes.Modules
 {
 
+    public class DemoUser : IUserIdentity
+    {
+        public string UserName { get; set; }
+        public IEnumerable<string> Claims { get; set; }
+    }
+
     public class AuthModule : NancyModule
     {
         public AuthModule(ITokenizer tokenizer, IModelContextFactory dbFactory)
@@ -28,12 +34,12 @@ namespace HipsterTechnologies.API.Routes.Modules
                 // DO NOT DO what this next line does. Shame on you.
                 string facebookUserId = x.oauthToken;
 
-                IUserIdentity userIdentity = null;
+                User user = null;
                 using (var dbContext = _dbFactory.CreateModelContext())
                 {
-                    userIdentity = dbContext.Users.FirstOrDefault(y => y.UserId == facebookUserId);
+                    user = dbContext.Users.FirstOrDefault(y => y.UserId == facebookUserId);
 
-                    if (userIdentity == null)
+                    if (user == null)
                     {
                         User newUser = new User();
                         newUser.UserId = facebookUserId;
@@ -46,13 +52,19 @@ namespace HipsterTechnologies.API.Routes.Modules
                         var result = dbContext.Users.Add(newUser);
                         dbContext.SaveChanges();
 
-                        userIdentity = newUser;
+                        user = newUser;
                     }
                 }
 
-                //userIdentity.Claims = new List<string>();
+                var baseClaims = new List<string>();
 
-                if (userIdentity == null || userIdentity.Claims == null)
+                DemoUser dem = new DemoUser();
+                dem.UserName = user.UserId;
+                dem.Claims = baseClaims;
+
+                IUserIdentity userIdentity = dem;
+
+                if (userIdentity == null)
                 {
                     return HttpStatusCode.Unauthorized;
                 }

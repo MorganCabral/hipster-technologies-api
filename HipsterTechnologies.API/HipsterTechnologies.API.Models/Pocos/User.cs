@@ -7,7 +7,7 @@ using Nancy.Security;
 
 namespace HipsterTechnologies.API.Models
 {
-    public class User : IUserIdentity
+    public class User
     {
         /// <summary>
         /// Primary Key. Facebook User ID.
@@ -16,6 +16,6 @@ namespace HipsterTechnologies.API.Models
 
         public string UserName { get; set; }
 
-        public IEnumerable<string> Claims { get; set; }
+        public List<string> Claims { get; set; }
     }
 }
