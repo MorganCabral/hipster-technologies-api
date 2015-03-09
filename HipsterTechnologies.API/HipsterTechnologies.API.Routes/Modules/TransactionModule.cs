@@ -10,6 +10,8 @@ using System.Threading;
 using HipsterTechnologies.API.Models;
 using HipsterTechnologies.API.Models.Contexts;
 using HipsterTechnologies.API.Services.MarkIt;
+using System.Data.Entity;
+using Nancy.Responses;
 
 namespace HipsterTechnologies.API.Routes.Modules
 {
@@ -35,16 +37,12 @@ namespace HipsterTechnologies.API.Routes.Modules
             Get["/", true] = GetTransactions;
             Post["/", true] = PostTransactions;
             Delete["/", true] = PurgeTransactions;
+
+            Get["/export", true] = ExportTransactions;
         }
 
         /// <summary>
-        /// Handles export and transaction querying duties.
-        /// 
-        /// For export, just return everything. This might take a while,
-        /// hence why this route is async.
-        /// 
-        /// For transaction data querying, use the query string to specify
-        /// what you want to filter by.
+        /// Endpoint for querying over transactions.
         /// </summary>
         /// <param name="parameters">Arguments from the client.</param>
         /// <param name="token">Token used to indicate that the task should stop.</param>
@@ -77,21 +75,24 @@ namespace HipsterTechnologies.API.Routes.Modules
             // We'll go ahead and blacklist the posted time and transaction id
             // since they haven't been created yet. Anything the user
             // provides is at best wrong and at worst malicious.
-            var transaction = this.Bind<Transaction>( t => t.PostedTime, t => t.TransactionId );
+            var transaction = this.Bind<Transaction>( t => t.PostedDateTime, t => t.TransactionId );
 
             // Annotate the transaction with data.
-            transaction.PostedTime = DateTime.Now;
+            transaction.PostedDateTime = DateTime.Now;
             if( transaction.TransactionItems == null )
             {
                 transaction.TransactionItems = new List<TransactionItem>();
             }
 
-            // Perform a price lookup on each stock
+            // Annotate the transaction items with data.
             foreach( var item in transaction.TransactionItems )
             {
                 // Do a price lookup on the stock.
                 var stock = await _stockMarketService.Quote(item.Symbol);
                 item.PostedPrice = stock.LastPrice;
+
+                // Update the posted datetime for the transaction item.
+                item.PostedDateTime = transaction.PostedDateTime;
             }
 
             // Store the annotated transaction in the data. We also need to
@@ -122,6 +123,41 @@ namespace HipsterTechnologies.API.Routes.Modules
         public async Task<dynamic> PurgeTransactions(dynamic parameters, CancellationToken token)
         {
             return HttpStatusCode.NotImplemented;
+        }
+
+        public async Task<dynamic> ExportTransactions(dynamic parameters, CancellationToken token)
+        {
+            var results = new List<Transaction>();
+
+            // Pull transactions from the database.
+            using (var dbContext = _dbFactory.CreateModelContext())
+            {
+                // TODO: Make this less hardcoded.
+                results = dbContext.Transactions
+                    .Where(tx => tx.FacebookHandle == "morgan.cabral")
+                    .Include("TransactionItems")
+                    .ToList(); 
+            }
+
+            // Map the Entity Framework data into something that Nancy
+            // can serialize. The Response generator chokes on the
+            // EntityFramework output so we need to project that into
+            // something it can take.
+            return results.Select(tx => new
+            {
+                TransactionId = tx.TransactionId,
+                PostedDateTime = tx.PostedDateTime,
+                TransactionItems = tx.TransactionItems.Select(ti => new
+                {
+                    TransactionItemId = ti.TransactionItemId,
+                    Exchange = ti.Exchange,
+                    Symbol = ti.Symbol,
+                    Type = ti.Type,
+                    Quantity = ti.Quantity,
+                    PostedPrice = ti.PostedPrice,
+                    PostedDateTime = ti.PostedDateTime
+                })
+            });
         }
 
         private ILoggingService _logger;
