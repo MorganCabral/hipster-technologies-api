@@ -77,7 +77,7 @@ namespace HipsterTechnologies.API.Routes.Tests.Modules
                 {
                     TransactionId = 1337,
                     FacebookHandle = "morgan.cabral",
-                    PostedTime = DateTime.Now,
+                    PostedDateTime = DateTime.Now,
                     TransactionItems = new List<TransactionItem>(SampleTransactionItems)
                 };
                 return transaction;
@@ -91,7 +91,7 @@ namespace HipsterTechnologies.API.Routes.Tests.Modules
                 var transaction = new Transaction
                 {
                     FacebookHandle = "morgan.cabral",
-                    PostedTime = DateTime.Now,
+                    PostedDateTime = DateTime.Now,
                     TransactionItems = new List<TransactionItem>(SampleSaleTransactionItems)
                 };
                 return transaction;
@@ -105,7 +105,7 @@ namespace HipsterTechnologies.API.Routes.Tests.Modules
                 var transaction = new Transaction
                 {
                     FacebookHandle = "morgan.cabral",
-                    PostedTime = DateTime.Now,
+                    PostedDateTime = DateTime.Now,
                     TransactionItems = new List<TransactionItem>(SamplePurchaseTransactionItems)
                 };
                 return transaction;
