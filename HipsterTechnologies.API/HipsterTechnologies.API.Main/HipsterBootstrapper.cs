@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Nancy;
 using Nancy.TinyIoc;
+using Nancy.Authentication.Token;
 using SimpleLogging.NLog;
 using SimpleLogging.Core;
 using Nancy.Bootstrapper;
@@ -42,6 +43,11 @@ namespace HipsterTechnologies.API.Main
             // service so that we can get stock quotes and other info.
             var stockMarketService = new MarkItService();
             container.Register<IStockMarketService>(stockMarketService);
+        }
+
+        protected override void RequestStartup(TinyIoCContainer container, IPipelines pipelines, NancyContext context)
+        {
+            TokenAuthentication.Enable(pipelines, new TokenAuthenticationConfiguration(container.Resolve<ITokenizer>()));
         }
     }
 }
