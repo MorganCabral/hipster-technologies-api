@@ -31,6 +31,16 @@ namespace HipsterTechnologies.API.Routes.Modules
                 using (var dbContext = _dbFactory.CreateModelContext())
                 {
                     userIdentity = dbContext.Users.FirstOrDefault(y => y.UserId == facebookUserId);
+                    if (userIdentity == null)
+                    {
+                        User newUser = new User();
+                        newUser.UserId = facebookUserId;
+
+                        var result = dbContext.Users.Add(newUser);
+                        dbContext.SaveChanges();
+
+                        userIdentity = newUser;
+                    }
                 }
 
                 if (userIdentity == null)
