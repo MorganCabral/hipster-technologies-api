@@ -23,5 +23,10 @@ namespace HipsterTechnologies.API.Models.Contexts
         /// Accessor property for Transaction models.
         /// </summary>
         public virtual DbSet<Transaction> Transactions { get; set; }
+
+        /// <summary>
+        /// Accessor property for User models.
+        /// </summary>
+        public virtual DbSet<User> Users { get; set; }
     }
 }
