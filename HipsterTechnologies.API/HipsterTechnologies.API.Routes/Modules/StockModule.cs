@@ -7,6 +7,7 @@ using Nancy;
 using System.Threading.Tasks;
 using SimpleLogging.Core;
 using System.Threading;
+using HipsterTechnologies.API.Services.MarkIt;
 
 namespace HipsterTechnologies.API.Routes.Modules
 {
@@ -19,13 +20,14 @@ namespace HipsterTechnologies.API.Routes.Modules
         /// Constructor.
         /// </summary>
         /// <param name="logger">A logger implementation.</param>
-        public StockModule(ILoggingService logger) : base("/stocks")
+        public StockModule(ILoggingService logger, IStockMarketService stockMarketService) : base("/stocks")
         {
             // Hold on to our logger implementation.
             _logger = logger;
+            _stockMarketService = stockMarketService;
 
             // Setup route handlers.
-            Get["/", true] = GetStockInfo;
+            Get["/{exchange}/{symbol}", true] = GetStockInfo;
             Get["/report", true] = GetStockReport;
         }
 
@@ -48,9 +50,11 @@ namespace HipsterTechnologies.API.Routes.Modules
         /// <returns>A task containing the result of whatever we do in this handler.</returns>
         public async Task<dynamic> GetStockInfo(dynamic parameters, CancellationToken token)
         {
-            return HttpStatusCode.NotImplemented;
+            var stock = await _stockMarketService.Quote(parameters.symbol);
+            return stock;
         }
 
         private ILoggingService _logger;
+        private IStockMarketService _stockMarketService;
     }
 }
