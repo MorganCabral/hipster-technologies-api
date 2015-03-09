@@ -53,6 +53,11 @@ namespace HipsterTechnologies.API.Models
         /// of posting.
         /// </summary>
         public Decimal PostedPrice { get; set; }
+
+        /// <summary>
+        /// The date and time when the transaction item was made.
+        /// </summary>
+        public DateTime PostedDateTime { get; set; }
     }
 
     /// <summary>
@@ -73,7 +78,7 @@ namespace HipsterTechnologies.API.Models
         /// <summary>
         /// The date and time when the transaction was posted.
         /// </summary>
-        public DateTime PostedTime { get; set; }
+        public DateTime PostedDateTime { get; set; }
 
         /// <summary>
         /// A list containing the data about each stock that is part of
