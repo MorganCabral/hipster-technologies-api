@@ -25,16 +25,23 @@ namespace HipsterTechnologies.API.Routes.Modules
             {
 
                 // TODO: Lookup the UID with the oath token
-                string facebookUserId = "10153120273240159";
+                // DO NOT DO what this next line does. Shame on you.
+                string facebookUserId = x.oauthToken;
 
                 IUserIdentity userIdentity = null;
                 using (var dbContext = _dbFactory.CreateModelContext())
                 {
                     userIdentity = dbContext.Users.FirstOrDefault(y => y.UserId == facebookUserId);
+
                     if (userIdentity == null)
                     {
                         User newUser = new User();
                         newUser.UserId = facebookUserId;
+                        // Don't do this.
+                        newUser.UserName = facebookUserId;
+                        List<string> claimsList = new List<string>();
+                        claimsList.Add("nonadmin");
+                        newUser.Claims = claimsList;
 
                         var result = dbContext.Users.Add(newUser);
                         dbContext.SaveChanges();
@@ -43,19 +50,23 @@ namespace HipsterTechnologies.API.Routes.Modules
                     }
                 }
 
-                if (userIdentity == null)
+                //userIdentity.Claims = new List<string>();
+
+                if (userIdentity == null || userIdentity.Claims == null)
                 {
                     return HttpStatusCode.Unauthorized;
                 }
 
                 var token = tokenizer.Tokenize(userIdentity, Context);
 
-                return String.Format("Token: {0}\n UID: {1}", token, facebookUserId);
+                return token;
 
-                return new
-                {
-                    Token = token,
-                };
+                //return String.Format("Token: {0}\n UID: {1}", token, facebookUserId);
+
+                //return new
+                //{
+                //    Token = token,
+                //};
             };
 
             Get["/validation"] = _ =>
