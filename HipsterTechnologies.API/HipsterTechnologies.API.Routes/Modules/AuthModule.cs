@@ -10,87 +10,78 @@ using Nancy.Authentication.Token;
 using Nancy.Security;
 using HipsterTechnologies.API.Models;
 using HipsterTechnologies.API.Models.Contexts;
+using System.Reflection;
+using System.Diagnostics;
+using HipsterTechnologies.API.Routes.Context;
+using Nancy.ModelBinding;
 
 namespace HipsterTechnologies.API.Routes.Modules
 {
-
-    public class DemoUser : IUserIdentity
-    {
-        public string UserName { get; set; }
-        public IEnumerable<string> Claims { get; set; }
-    }
-
+    /// <summary>
+    /// Module which is response for handling authentication for the API.
+    /// Hit this to get a token.
+    /// </summary>
     public class AuthModule : NancyModule
     {
         public AuthModule(ITokenizer tokenizer, IModelContextFactory dbFactory)
-            : base("/auth")
+            : base("/api/auth")
         {
+            // Store dependencies.
             _dbFactory = dbFactory;
 
-            Get["/{oauthToken}"] = x =>
+            Get["/"] = _ =>
             {
+                // Access token from the client. Technically this
+                // comes from facebook.
+                string facebookUserId = _.access_token;
 
-                // TODO: Lookup the UID with the oath token
-                // DO NOT DO what this next line does. Shame on you.
-                string facebookUserId = x.oauthToken;
-
+                // Create or pull a user from the data.
                 User user = null;
                 using (var dbContext = _dbFactory.CreateModelContext())
                 {
-                    user = dbContext.Users.FirstOrDefault(y => y.UserId == facebookUserId);
+                    // Check to see if we actually have a user.
+                    user = dbContext.Users.Find(facebookUserId);
 
-                    if (user == null)
+                    // If we couldn't find a user with the given token as a user ID,
+                    // create a new one.
+                    if (user == default(User))
                     {
-                        User newUser = new User();
-                        newUser.UserId = facebookUserId;
-                        // Don't do this.
-                        newUser.UserName = facebookUserId;
-                        List<string> claimsList = new List<string>();
-                        claimsList.Add("nonadmin");
-                        newUser.Claims = claimsList;
+                        // Create a new user.
+                        user = new User
+                        {
+                            UserId = facebookUserId,
+                            UserName = facebookUserId
+                        };
 
-                        var result = dbContext.Users.Add(newUser);
+                        // Insert the user into the db.
+                        var result = dbContext.Users.Add(user);
+
+                        // Lock it up.
                         dbContext.SaveChanges();
-
-                        user = newUser;
                     }
                 }
 
-                var baseClaims = new List<string>();
-
-                DemoUser dem = new DemoUser();
-                dem.UserName = user.UserId;
-                dem.Claims = baseClaims;
-
-                IUserIdentity userIdentity = dem;
-
-                if (userIdentity == null)
+                // If we still don't have a user for some reason,
+                // indicate failure.
+                if (user == null)
                 {
                     return HttpStatusCode.Unauthorized;
                 }
 
-                var token = tokenizer.Tokenize(userIdentity, Context);
-
-                return token;
-
-                //return String.Format("Token: {0}\n UID: {1}", token, facebookUserId);
-
-                //return new
-                //{
-                //    Token = token,
-                //};
+                // Create an object containing the token as a property so that
+                // the serialized output is within a json object.
+                var token = tokenizer.Tokenize(user, Context);
+                return new
+                {
+                    token = token,
+                };
             };
 
+            // TODO: Leaving this for Corban's testing purposes.
             Get["/validation"] = _ =>
             {
                 this.RequiresAuthentication();
                 return "Yay! You are authenticated!";
-            };
-
-            Get["/admin"] = _ =>
-            {
-                this.RequiresClaims(new[] { "admin" });
-                return "Yay! You are authorized!";
             };
         }
 
