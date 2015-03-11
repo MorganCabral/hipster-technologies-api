@@ -12,6 +12,7 @@ using HipsterTechnologies.API.Models.Contexts;
 using HipsterTechnologies.API.Services.MarkIt;
 using System.Data.Entity;
 using Nancy.Responses;
+using Nancy.Security;
 
 namespace HipsterTechnologies.API.Routes.Modules
 {
@@ -49,6 +50,9 @@ namespace HipsterTechnologies.API.Routes.Modules
         /// <returns>A task containing the result of whatever we do in this handler.</returns>
         public async Task<dynamic> GetTransactions(dynamic parameters, CancellationToken token)
         {
+            // We need to be authenticated for this to work.
+            //this.RequiresAuthentication();
+
             return HttpStatusCode.NotImplemented;
         }
 
@@ -67,6 +71,9 @@ namespace HipsterTechnologies.API.Routes.Modules
         /// <returns>A task containing the result of whatever we do in this handler.</returns>
         public async Task<dynamic> PostTransactions(dynamic parameters, CancellationToken token)
         {
+            // We need to be authenticated in order to create transactions.
+            //this.RequiresAuthentication();
+
             // Create a response object early on so that we can modify it
             // as we go.
             Response response = new Nancy.Response();
@@ -122,19 +129,28 @@ namespace HipsterTechnologies.API.Routes.Modules
         /// <returns>A task containing the result of whatever we do in this handler.</returns>
         public async Task<dynamic> PurgeTransactions(dynamic parameters, CancellationToken token)
         {
+            // We need to be authenticated in order to purge transactions.
+            //this.RequiresAuthentication();
+
             return HttpStatusCode.NotImplemented;
         }
 
         public async Task<dynamic> ExportTransactions(dynamic parameters, CancellationToken token)
         {
+            // We need to be authenticated for this to work.
+            //this.RequiresAuthentication();
+
+            // This is where we'll put our results.
             var results = new List<Transaction>();
+
+            // Get the username out of our current session.
+            var username = "morgan.cabral"; // this.Context.CurrentUser.UserName;
 
             // Pull transactions from the database.
             using (var dbContext = _dbFactory.CreateModelContext())
             {
-                // TODO: Make this less hardcoded.
                 results = dbContext.Transactions
-                    .Where(tx => tx.FacebookHandle == "morgan.cabral")
+                    .Where(tx => tx.FacebookHandle == username)
                     .Include("TransactionItems")
                     .ToList(); 
             }
