@@ -22,7 +22,7 @@ namespace HipsterTechnologies.API.Main
             // Pull the port to host the service on from our application-level
             // configuration. We can make this vary based on environment.
             var port = ConfigurationManager.AppSettings["port"];
-            var url = String.Format("http://+:8080");
+            var url = String.Format("http://+:8080/api/");
 
             // Run the web server until the user hits enter.
             using (WebApp.Start<Startup>(url))
