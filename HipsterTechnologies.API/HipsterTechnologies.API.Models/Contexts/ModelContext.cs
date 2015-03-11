@@ -17,16 +17,30 @@ namespace HipsterTechnologies.API.Models.Contexts
         /// <summary>
         /// Accessor property for Holding models.
         /// </summary>
-        public virtual DbSet<Holding> Holdings { get; set; }
+        public virtual IDbSet<Holding> Holdings { get; set; }
 
         /// <summary>
         /// Accessor property for Transaction models.
         /// </summary>
-        public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual IDbSet<Transaction> Transactions { get; set; }
+
+        /// <summary>
+        /// Accessor property for TransactionItem models.
+        /// </summary>
+        public virtual IDbSet<TransactionItem> TransactionItems { get; set; }
 
         /// <summary>
         /// Accessor property for User models.
         /// </summary>
-        public virtual DbSet<User> Users { get; set; }
+        public virtual IDbSet<User> Users { get; set; }
+
+        /// <summary>
+        /// Mark the given entity as modified.
+        /// </summary>
+        /// <param name="entity">The entity to mark as modified.</param>
+        public void SetModified(object entity)
+        {
+            Entry(entity).State = EntityState.Modified;
+        }
     }
 }
