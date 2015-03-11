@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HipsterTechnologies.API.Main
+namespace HipsterTechnologies.API.Routes
 {
     public class HipsterApplicationStartup : IApplicationStartup
     {

@@ -13,7 +13,7 @@ using HipsterTechnologies.API.Models.Contexts;
 using HipsterTechnologies.API.Services.MarkIt;
 using Nancy.Conventions;
 
-namespace HipsterTechnologies.API.Main
+namespace HipsterTechnologies.API.Routes
 {
     public class HipsterBootstrapper : DefaultNancyBootstrapper
     {
