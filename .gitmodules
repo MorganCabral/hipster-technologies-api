@@ -1,0 +1,3 @@
+[submodule "HipsterTechnologies.API/Client"]
+	path = HipsterTechnologies.API/Client
+	url = https://github.com/kristenmills/hipster-technologies

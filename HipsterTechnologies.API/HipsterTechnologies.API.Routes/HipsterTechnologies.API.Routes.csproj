@@ -88,6 +88,7 @@
     <Compile Include="Context\IModuleContext.cs" />
     <Compile Include="Context\ModuleContext.cs" />
     <Compile Include="Modules\AuthModule.cs" />
+    <Compile Include="Modules\ClientModule.cs" />
     <Compile Include="Modules\EventModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modules\StockModule.cs" />
