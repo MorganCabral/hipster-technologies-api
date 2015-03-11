@@ -28,6 +28,7 @@ namespace HipsterTechnologies.API.Routes.Modules
 
             // Setup route handlers.
             Get["/{exchange}/{symbol}", true] = GetStockInfo;
+            Get["/lookup", true] = LookupStocks;
             Get["/report", true] = GetStockReport;
         }
 
@@ -40,6 +41,19 @@ namespace HipsterTechnologies.API.Routes.Modules
         public async Task<dynamic> GetStockReport(dynamic parameters, CancellationToken token)
         {
             return HttpStatusCode.NotImplemented;
+        }
+
+        /// <summary>
+        /// Used to look up stocks that might to a search term.
+        /// </summary>
+        /// <param name="parameters">Arguments from the client.</param>
+        /// <param name="token">Token used to indicate that the task should stop.</param>
+        /// <returns>A structured object containing possibly matching stocks.</returns>
+        public async Task<dynamic> LookupStocks(dynamic parameters, CancellationToken token)
+        {
+            String searchTerm = this.Request.Query["term"];
+            var companies = await _stockMarketService.Lookup(searchTerm);
+            return companies;
         }
 
         /// <summary>
