@@ -11,6 +11,7 @@ using SimpleLogging.Core;
 using Nancy.Bootstrapper;
 using HipsterTechnologies.API.Models.Contexts;
 using HipsterTechnologies.API.Services.MarkIt;
+using Nancy.Conventions;
 
 namespace HipsterTechnologies.API.Main
 {
@@ -49,5 +50,18 @@ namespace HipsterTechnologies.API.Main
         {
             TokenAuthentication.Enable(pipelines, new TokenAuthenticationConfiguration(container.Resolve<ITokenizer>()));
         }
+       
+        protected override void ConfigureConventions(NancyConventions conventions)
+        {
+            base.ConfigureConventions(conventions);
+
+            conventions.StaticContentsConventions.Add(
+                 StaticContentConventionBuilder.AddDirectory("js", @"/js")
+            );
+            conventions.StaticContentsConventions.Add(
+                 StaticContentConventionBuilder.AddDirectory("css", @"css")
+            );
+        }
+
     }
 }
