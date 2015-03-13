@@ -27,7 +27,7 @@ namespace HipsterTechnologies.API.Routes.Modules
         /// <param name="logger">A logger implementation.</param>
         public TransactionModule(ILoggingService logger,
             IModelContextFactory dbFactory, 
-            IStockMarketService stockMarketService) : base("/transactions")
+            IStockMarketService stockMarketService) : base("/api/transactions")
         {
             // Hold on to dependencies.
             _logger = logger;

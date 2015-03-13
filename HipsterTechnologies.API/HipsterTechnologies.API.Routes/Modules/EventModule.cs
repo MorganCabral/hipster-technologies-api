@@ -18,7 +18,7 @@ namespace HipsterTechnologies.API.Routes.Modules
         /// Constructor.
         /// </summary>
         /// <param name="logger">A logger implementation.</param>
-        public EventModule(ILoggingService logger) : base("/events")
+        public EventModule(ILoggingService logger) : base("/api/events")
         {
             _logger = logger;
 

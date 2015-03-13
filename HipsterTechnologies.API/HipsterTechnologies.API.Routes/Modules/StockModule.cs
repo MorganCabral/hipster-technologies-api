@@ -20,7 +20,7 @@ namespace HipsterTechnologies.API.Routes.Modules
         /// Constructor.
         /// </summary>
         /// <param name="logger">A logger implementation.</param>
-        public StockModule(ILoggingService logger, IStockMarketService stockMarketService) : base("/stocks")
+        public StockModule(ILoggingService logger, IStockMarketService stockMarketService) : base("/api/stocks")
         {
             // Hold on to our logger implementation.
             _logger = logger;
