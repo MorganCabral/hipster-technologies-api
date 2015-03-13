@@ -19,7 +19,7 @@ namespace HipsterTechnologies.API.Routes.Modules
 
         public async Task<dynamic> GetIndex(dynamic parameters, CancellationToken token)
         {
-            return View["index.html"];
+            return View["Client/dist/index.html"];
         }
     }
 }
