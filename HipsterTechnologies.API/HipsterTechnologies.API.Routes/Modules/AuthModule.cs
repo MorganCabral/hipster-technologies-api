@@ -33,7 +33,7 @@ namespace HipsterTechnologies.API.Routes.Modules
             {
                 // Access token from the client. Technically this
                 // comes from facebook.
-                string facebookUserId = _.access_token;
+                string facebookUserId = Request.Query.access_token;
 
                 // Create or pull a user from the data.
                 User user = null;
@@ -71,10 +71,10 @@ namespace HipsterTechnologies.API.Routes.Modules
                 // Create an object containing the token as a property so that
                 // the serialized output is within a json object.
                 var token = tokenizer.Tokenize(user, Context);
-                return new
+                return Response.AsJson(new
                 {
-                    token = token,
-                };
+                    token = token
+                });
             };
 
             // TODO: Leaving this for Corban's testing purposes.

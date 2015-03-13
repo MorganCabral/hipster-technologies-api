@@ -56,10 +56,10 @@ namespace HipsterTechnologies.API.Routes
             base.ConfigureConventions(conventions);
 
             conventions.StaticContentsConventions.Add(
-                 StaticContentConventionBuilder.AddDirectory("js", @"/js")
+                 StaticContentConventionBuilder.AddDirectory("js", @"Client/dist/js")
             );
             conventions.StaticContentsConventions.Add(
-                 StaticContentConventionBuilder.AddDirectory("css", @"css")
+                 StaticContentConventionBuilder.AddDirectory("css", @"Client/dist/css")
             );
         }
 
