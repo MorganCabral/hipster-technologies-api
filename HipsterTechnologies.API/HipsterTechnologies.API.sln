@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipsterTechnologies.API.Ser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipsterTechnologies.API.Main.Tests", "HipsterTechnologies.API.Main.Tests\HipsterTechnologies.API.Main.Tests.csproj", "{283892B4-C1FC-4540-A698-BB9D0F6BBC29}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{D841459F-8AB0-4480-BE23-0B331A5C4897}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,7 +82,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{D7E470F3-A6E9-44F0-B999-F1DF7EAA8995} = {2D210C98-B559-4578-9C51-84E35B8A2948}
 		{D8D5D78D-964B-4C49-8DC2-B57F28FE7AC4} = {CD4E7DFE-44C0-4DA0-AB87-C82C07B72034}
 		{DAA853BD-06BA-40CC-AB7D-559D9C0BA489} = {799DFD22-AB82-4963-83DE-CA3DF1CAD044}
 		{18DD27C8-3C32-45E5-8311-9EF33FB9D7E5} = {799DFD22-AB82-4963-83DE-CA3DF1CAD044}
