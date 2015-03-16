@@ -112,6 +112,12 @@ namespace HipsterTechnologies.API.Routes.Tests.Modules
             }
         }
 
+        public String TransactionUri
+        {
+            get { return "/api/transactions"; }
+        }
+
+
         #endregion
 
         [SetUp]
@@ -151,20 +157,20 @@ namespace HipsterTechnologies.API.Routes.Tests.Modules
         public void PostTransactionsLocationHeaderTest()
         {
             // Exercise the module.
-            var response = Browser.Post("/transactions", with => {
+            var response = Browser.Post(TransactionUri, with => {
                 with.JsonBody<Transaction>(SampleTransaction);
             });
 
             // Verify state.
             Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
-            Assert.AreEqual("/transactions/1337", response.Headers["Location"]);
+            Assert.AreEqual(String.Format("{0}/{1}", TransactionUri, "1337"), response.Headers["Location"]);
         }
 
         [Test]
         public void PostTransactionReturns201StatusCodeOnSuccessTest()
         {
             // Exercise the module.
-            var response = Browser.Post("/transactions", with => {
+            var response = Browser.Post(TransactionUri, with => {
                 with.JsonBody<Transaction>(SampleTransaction);
             });
 
@@ -176,7 +182,7 @@ namespace HipsterTechnologies.API.Routes.Tests.Modules
         public void PostTransactionsStoresTransactionTest()
         {
             // Exercise the module.
-            var response = Browser.Post("/transactions", with => {
+            var response = Browser.Post(TransactionUri, with => {
                 with.JsonBody<Transaction>(SampleTransaction);
             });
 
@@ -189,7 +195,7 @@ namespace HipsterTechnologies.API.Routes.Tests.Modules
         public void PostTransactionsUsesStockMarketService()
         {
             // Exercise the module.
-            var response = Browser.Post("/transactions", with => {
+            var response = Browser.Post(TransactionUri, with => {
                 with.JsonBody<Transaction>(SampleTransaction);
             });
 
