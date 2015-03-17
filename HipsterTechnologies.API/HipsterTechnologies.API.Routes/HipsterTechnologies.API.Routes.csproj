@@ -76,7 +76,22 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Client\dist\css\main.css" />
+    <Content Include="Client\dist\css\themes\basic\assets\fonts\icons.svg" />
+    <Content Include="Client\dist\css\themes\default\assets\fonts\icons.svg" />
+    <Content Include="Client\dist\css\themes\default\assets\images\flags.png" />
+    <Content Include="Client\dist\index.html" />
+    <Content Include="Client\dist\js\main.js" />
     <Content Include="packages.config" />
+    <Content Include="Client\dist\css\themes\basic\assets\fonts\icons.eot" />
+    <Content Include="Client\dist\css\themes\basic\assets\fonts\icons.ttf" />
+    <Content Include="Client\dist\css\themes\basic\assets\fonts\icons.woff" />
+    <Content Include="Client\dist\css\themes\default\assets\fonts\icons.eot" />
+    <Content Include="Client\dist\css\themes\default\assets\fonts\icons.otf" />
+    <Content Include="Client\dist\css\themes\default\assets\fonts\icons.ttf" />
+    <Content Include="Client\dist\css\themes\default\assets\fonts\icons.woff" />
+    <Content Include="Client\dist\css\themes\default\assets\fonts\icons.woff2" />
+    <None Include="Properties\PublishProfiles\Cool.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
