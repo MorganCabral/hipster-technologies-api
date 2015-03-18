@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Nancy;
-using HipsterTechnologies.API.Main;
 using SimpleLogging.Core;
 using Moq;
 using Nancy.Testing;
 using Nancy.Bootstrapper;
+using HipsterTechnologies.API.Routes;
 
-namespace HipsterTechnologies.API.Main.Tests
+namespace HipsterTechnologies.API.Routes.Tests
 {
     /// <summary>
     /// Unit Tests for our custom bootstrapper.
@@ -67,7 +67,6 @@ namespace HipsterTechnologies.API.Main.Tests
             LoggerMock.Verify(mock => mock.Info("{0} {1}", "POST", "/tests"), Times.Once);
             LoggerMock.Verify(mock => mock.Info("{0} {1}", "DELETE", "/tests"), Times.Once);
             LoggerMock.Verify(mock => mock.Info("{0} {1}", "PUT", "/tests"), Times.Once);
-
         }
     }
 }

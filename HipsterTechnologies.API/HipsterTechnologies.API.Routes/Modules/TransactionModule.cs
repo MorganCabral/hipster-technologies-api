@@ -39,7 +39,7 @@ namespace HipsterTechnologies.API.Routes.Modules
             Post["/", true] = PostTransactions;
             Delete["/", true] = PurgeTransactions;
 
-            Get["/export", true] = ExportTransactions;
+            Get["/export", true] = ExportTransactions; 
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace HipsterTechnologies.API.Routes.Modules
 
                 // Set the location header now that we have a final
                 // transaction ID to work with.
-                String location = String.Format("/transactions/{0}", result.TransactionId);
+                String location = String.Format("{0}/{1}", ModulePath, result.TransactionId);
                 response.Headers.Add("Location", location);
             }
 
