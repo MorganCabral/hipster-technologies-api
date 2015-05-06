@@ -20,6 +20,11 @@ namespace HipsterTechnologies.API.Models.Contexts
         public virtual IDbSet<Holding> Holdings { get; set; }
 
         /// <summary>
+        /// Accessor property for Event models.
+        /// </summary>
+        public virtual IDbSet<Event> Events { get; set; }
+
+        /// <summary>
         /// Accessor property for Transaction models.
         /// </summary>
         public virtual IDbSet<Transaction> Transactions { get; set; }
