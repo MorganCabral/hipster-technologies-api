@@ -23,13 +23,15 @@ namespace HipsterTechnologies.API.Models.Migrations
                 "dbo.Events",
                 c => new 
                     { 
-                        EventId = c.Int(nullable: false, identity: true),
-                        FacebookHandle = c.String(),
-                        EventStart = c.DateTime(),
-                        EventLength = c.DateTimeOffset(),
-                        EventName = c.String(),
+                        Id = c.Int(nullable: false, identity: true),
+                        FacebookId = c.String(),
+                        StartTime = c.DateTimeOffset(),
+                        EndTime = c.DateTimeOffset(),
+                        Name = c.String(),
+                        Description = c.String(),
+                        AllDay = c.Boolean(),
                     })
-                .PrimaryKey(t => t.EventId);
+                .PrimaryKey(t => t.Id);
 
             CreateTable(
                 "dbo.Transactions",

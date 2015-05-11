@@ -13,26 +13,37 @@ namespace HipsterTechnologies.API.Models
         /// <summary>
         /// Primary Key.
         /// </summary>
-        public int EventId { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// The event owner's facebook handle.
         /// </summary>
-        public String FacebookHandle { get; set; }
+        public String FacebookId { get; set; }
 
         /// <summary>
         /// The start time of the event.
         /// </summary>
-        public DateTime EventStart { get; set; }
+        public DateTimeOffset StartTime { get; set; }
 
         /// <summary>
         /// The amount of time the event lasts for.
         /// </summary>
-        public DateTimeOffset EventLength { get; set; }
+        public DateTimeOffset EndTime { get; set; }
+
+        /// <summary>
+        /// Whether or not the event lasts all day.
+        /// </summary>
+        public Boolean AllDay { get; set; }
+
+        /// <summary>
+        /// The name of the event.
+        /// </summary>
+        public String Name { get; set; }
 
         /// <summary>
         /// The description of the event.
         /// </summary>
-        public String EventName { get; set; }
+        public String Description { get; set; }
+
     }
 }
