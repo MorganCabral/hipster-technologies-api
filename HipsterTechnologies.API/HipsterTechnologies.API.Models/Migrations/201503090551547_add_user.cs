@@ -20,6 +20,20 @@ namespace HipsterTechnologies.API.Models.Migrations
                 .PrimaryKey(t => t.HoldingId);
             
             CreateTable(
+                "dbo.Events",
+                c => new 
+                    { 
+                        Id = c.Int(nullable: false, identity: true),
+                        FacebookId = c.String(),
+                        StartTime = c.DateTime(),
+                        EndTime = c.DateTime(),
+                        Name = c.String(),
+                        Description = c.String(),
+                        AllDay = c.Boolean(),
+                    })
+                .PrimaryKey(t => t.Id);
+
+            CreateTable(
                 "dbo.Transactions",
                 c => new
                     {
@@ -64,6 +78,7 @@ namespace HipsterTechnologies.API.Models.Migrations
             DropTable("dbo.TransactionItems");
             DropTable("dbo.Transactions");
             DropTable("dbo.Holdings");
+            DropTable("dbo.Events");
         }
     }
 }
