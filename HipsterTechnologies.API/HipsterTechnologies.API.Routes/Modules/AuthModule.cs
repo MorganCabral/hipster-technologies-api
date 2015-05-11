@@ -37,27 +37,50 @@ namespace HipsterTechnologies.API.Routes.Modules
 
                 // Create or pull a user from the data.
                 User user = null;
-                using (var dbContext = _dbFactory.CreateModelContext())
+
+                if (string.IsNullOrEmpty(facebookUserId))
                 {
-                    // Check to see if we actually have a user.
-                    user = dbContext.Users.Find(facebookUserId);
-
-                    // If we couldn't find a user with the given token as a user ID,
-                    // create a new one.
-                    if (user == default(User))
+                    Console.WriteLine("No facebookUserID.");
+                    return HttpStatusCode.BadRequest;
+                }
+                else
+                {
+                    using (var dbContext = _dbFactory.CreateModelContext())
                     {
-                        // Create a new user.
-                        user = new User
+                        // Check to see if we actually have a user.
+                        user = dbContext.Users.Find(facebookUserId);
+
+                        // If we couldn't find a user with the given token as a user ID,
+                        // create a new one.
+                        if (user == default(User))
                         {
-                            UserId = facebookUserId,
-                            UserName = facebookUserId
-                        };
+                            // Create a new user.
+                            user = new User
+                            {
+                                UserId = facebookUserId,
+                                UserName = facebookUserId
+                            };
 
-                        // Insert the user into the db.
-                        var result = dbContext.Users.Add(user);
+                            // Insert the user into the db.
+                            var result = dbContext.Users.Add(user);
 
-                        // Lock it up.
-                        dbContext.SaveChanges();
+                            // Lock it up.
+                            try
+                            {
+                                dbContext.SaveChanges();
+                            }
+                            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+                            {
+                                foreach (var err in ex.EntityValidationErrors)
+                                {
+                                    foreach (var err1 in err.ValidationErrors)
+                                    {
+                                        Console.WriteLine(string.Format("Prop: {0}, Err: {1}", err1.PropertyName, err1.ErrorMessage));
+                                    }
+                                }
+                                throw;
+                            }
+                        }
                     }
                 }
 
