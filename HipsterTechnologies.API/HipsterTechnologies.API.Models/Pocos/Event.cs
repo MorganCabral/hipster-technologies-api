@@ -23,12 +23,12 @@ namespace HipsterTechnologies.API.Models
         /// <summary>
         /// The start time of the event.
         /// </summary>
-        public DateTimeOffset StartTime { get; set; }
+        public DateTime StartTime { get; set; }
 
         /// <summary>
         /// The amount of time the event lasts for.
         /// </summary>
-        public DateTimeOffset EndTime { get; set; }
+        public DateTime EndTime { get; set; }
 
         /// <summary>
         /// Whether or not the event lasts all day.

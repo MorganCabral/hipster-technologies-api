@@ -25,8 +25,8 @@ namespace HipsterTechnologies.API.Models.Migrations
                     { 
                         Id = c.Int(nullable: false, identity: true),
                         FacebookId = c.String(),
-                        StartTime = c.DateTimeOffset(),
-                        EndTime = c.DateTimeOffset(),
+                        StartTime = c.DateTime(),
+                        EndTime = c.DateTime(),
                         Name = c.String(),
                         Description = c.String(),
                         AllDay = c.Boolean(),
