@@ -65,6 +65,7 @@
     <Compile Include="Migrations\201503090551547_add_user.Designer.cs">
       <DependentUpon>201503090551547_add_user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pocos\Event.cs" />
     <Compile Include="Pocos\Holding.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pocos\User.cs" />
