@@ -71,7 +71,9 @@
     <Compile Include="Pocos\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pocos\Transaction.cs" />
+    <Compile Include="Repositories\EventRepository.cs" />
     <Compile Include="Repositories\HoldingRepository.cs" />
+    <Compile Include="Repositories\IEventRepository.cs" />
     <Compile Include="Repositories\IHoldingRepository.cs" />
   </ItemGroup>
   <ItemGroup>

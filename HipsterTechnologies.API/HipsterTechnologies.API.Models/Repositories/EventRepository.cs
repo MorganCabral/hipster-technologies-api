@@ -43,7 +43,7 @@ namespace HipsterTechnologies.API.Models.Repositories
             IQueryable<Event> results = null;
             using (var db = _factory.CreateModelContext())
             {
-                results = db.Events.Where(theEvent => theEvent.FacebookHandle == username);
+                results = db.Events.Where(theEvent => theEvent.FacebookId == username);
             }
             return results;
         }
@@ -55,7 +55,7 @@ namespace HipsterTechnologies.API.Models.Repositories
             {
                 // Thin out the results to only those events which are 
                 // owned by the specified user.
-                results = db.Events.Where(theEvent => theEvent.FacebookHandle == username).AsQueryable();
+                results = db.Events.Where(theEvent => theEvent.FacebookId == username).AsQueryable();
 
                 // Apply each of the filters to the queries.
                 foreach (var filter in filters)
